@@ -21,7 +21,7 @@
 #import <SubRip/NSMutableAttributedString+SRTString.h>
 #endif
 
-NSString* const    SubRipErrorDomain                       = @"de.geheimwerk.Error.SubRip";
+NSString * const    SubRipErrorDomain                       = @"de.geheimwerk.Error.SubRip";
 
 const int kJXCouldNotParseSRT           = 1009;
 
@@ -42,8 +42,8 @@ typedef enum {
     {
         NSStringEncoding encoding;
         NSError *error = nil;
-        NSString* string = [[NSString alloc] initWithContentsOfFile:filePath
-                                                           usedEncoding:&encoding
+        NSString *string = [[NSString alloc] initWithContentsOfFile:filePath
+                                                       usedEncoding:&encoding
                                                               error:&error];
         if ([error code] == NSFileReadUnknownStringEncodingError) // couldn't determine file encoding
         {
@@ -479,7 +479,7 @@ NS_INLINE BOOL scanString(NSScanner *scanner, NSString *str) {
 
 #if 0
     NSLog(@"Read %d = %lu subtitles", subtitleNr, [_subtitleItems count]);
-    SubRipItem* sub = [_subtitleItems objectAtIndex:0];
+    SubRipItem *sub = [_subtitleItems objectAtIndex:0];
     NSLog(@"FIRST: '%@'", sub);
     sub = [_subtitleItems lastObject];
     NSLog(@"LAST: '%@'", sub);
