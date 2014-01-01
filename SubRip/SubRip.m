@@ -935,6 +935,18 @@ NS_INLINE NSString * subRipItem2SRTBlock(SubRipItem *item, BOOL lineBreaksAllowe
             ((otherText == _text) || [otherText isEqualTo:_text]));
 }
 
+#define NSUINT_BIT (CHAR_BIT * sizeof(NSUInteger))
+#define NSUINTROTATE(val, howmuch) ((((NSUInteger)val) << howmuch) | (((NSUInteger)val) >> (NSUINT_BIT - howmuch)))
+
+- (NSUInteger)hash
+{
+    NSUInteger hash =
+    NSUINTROTATE([[NSValue valueWithCMTime:_startTime] hash], NSUINT_BIT / 3) ^
+    NSUINTROTATE([[NSValue valueWithCMTime:_endTime] hash], NSUINT_BIT / 2) ^
+    [_text hash];
+    
+    return hash;
+}
 
 -(NSInteger)startTimeInSeconds
 {

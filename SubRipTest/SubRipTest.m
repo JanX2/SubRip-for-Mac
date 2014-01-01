@@ -249,6 +249,44 @@ typedef struct _SubRipTestTimeIndexPair {
 	XCTAssertEqualObjects(data1, data2, @"Coding test failed.");
 }
 
+- (void)testHashing
+{
+	NSString *testString = @"This is the first subtitle";
+	
+	SubRipItem *item1 = [[SubRipItem alloc] initWithText:testString
+											   startTime:CMTimeMakeWithSeconds(16.000, 1000)
+												 endTime:CMTimeMakeWithSeconds(18.000, 1000)];
+	
+	SubRipItem *item2 = [[SubRipItem alloc] initWithText:testString
+											   startTime:CMTimeMakeWithSeconds(16.000, 1000)
+												 endTime:CMTimeMakeWithSeconds(18.000, 1000)];
+	
+	
+	XCTAssertEqualObjects(item1, item2, @"Hashing equality test #1 failed.");
+
+	XCTAssertEqual([item1 hash], [item2 hash], @"Hashing hash test #1 failed.");
+	
+	item2.text = nil;
+	
+	XCTAssertFalse([item1 isEqualTo:item2], @"Hashing equality test #2 failed.");
+	
+	XCTAssertFalse(([item1 hash] == [item2 hash]), @"Hashing hash test #2 failed.");
+
+	item2.text = testString;
+	item2.startTime = kCMTimeZero;
+	
+	XCTAssertFalse([item1 isEqualTo:item2], @"Hashing equality test #3 failed.");
+	
+	XCTAssertFalse(([item1 hash] == [item2 hash]), @"Hashing hash test #3 failed.");
+	
+	item2.startTime = item1.startTime;
+	item2.endTime = kCMTimeZero;
+	
+	XCTAssertFalse([item1 isEqualTo:item2], @"Hashing equality test #4 failed.");
+	
+	XCTAssertFalse(([item1 hash] == [item2 hash]), @"Hashing hash test #4 failed.");
+}
+
 #if SUBRIP_TAG_SUPPORT
 - (void)testTagParsingSupport
 {
