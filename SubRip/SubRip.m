@@ -301,7 +301,7 @@ NS_INLINE BOOL scanString(NSScanner *scanner, NSString *str) {
     int subtitleNr = 0;
     int lineNr = 1;
     
-    NSRegularExpression *tagRe = nil;
+    static NSRegularExpression *tagRe = nil;
    
     while (SCAN_LINEBREAK()); // Skip leading empty lines.
    
@@ -446,16 +446,17 @@ NS_INLINE BOOL scanString(NSScanner *scanner, NSString *str) {
                 searchRange = NSMakeRange(tagStartRange.location, subText.length - tagStartRange.location);
                 NSMutableString *subTextMutable = [subText mutableCopy];
                 
-                // Remove all
-                if (tagRe == nil) {
+                static dispatch_once_t tagRePredicate;
+                dispatch_once(&tagRePredicate, ^{
                     NSString * const tagPattern = @"\\{(\\\\|Y:)[^\\{]+\\}";
                     
                     tagRe = [[NSRegularExpression alloc] initWithPattern:tagPattern
                                                                  options:0
                                                                    error:error];
                     if (tagRe == nil)  NSLog(@"%@", *error);
-                }
+                });
                 
+                // Remove all
                 [tagRe replaceMatchesInString:subTextMutable
                                       options:0
                                         range:searchRange
@@ -478,8 +479,6 @@ NS_INLINE BOOL scanString(NSScanner *scanner, NSString *str) {
         
         while (SCAN_LINEBREAK()); // Skip trailing empty lines.
     }
-    
-    JX_RELEASE(tagRe);
 
 #if 0
     NSLog(@"Read %d = %lu subtitles", subtitleNr, [_subtitleItems count]);
