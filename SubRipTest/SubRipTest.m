@@ -23,7 +23,7 @@ static NSString *testTaggedSRTString1;
 
 @implementation SubRipTest
 
-- (NSString *)loadTestFileWithName:(NSString *)testFileName
++ (NSString *)loadTestFileWithName:(NSString *)testFileName
 						fromBundle:(NSBundle *)testBundle
 							 error:(NSError **)error
 {
@@ -44,10 +44,8 @@ static NSString *testTaggedSRTString1;
 	return testString;
 }
 
-- (void)setUp
++ (void)initialize
 {
-	[super setUp];
-	
 	NSError *error = nil;
 	
 	NSBundle *testBundle = [NSBundle bundleForClass:[self class]];
@@ -69,6 +67,11 @@ static NSString *testTaggedSRTString1;
 	"<b>bold</b>, <i>italic</i>, <u>underlined</u>\n"
 	"<font color=\"#ff0000\">red text</font>";
 	
+}
+
+- (void)setUp
+{
+	[super setUp];
 }
 
 - (void)tearDown
