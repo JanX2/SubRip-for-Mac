@@ -237,6 +237,7 @@ NS_INLINE SubRipPosition convertCGRectToSubRipPosition(CGRect rect) {
     return [self _populateFromString:str error:NULL];
 }
 
+#if SUBRIP_SUBVIEWER_SUPPORT
 NS_INLINE NSString * convertSubViewerLineBreaks(NSString *currentText) {
     NSUInteger currentTextLength = currentText.length;
     if (currentTextLength == 0)  return currentText;
@@ -259,6 +260,7 @@ NS_INLINE NSString * convertSubViewerLineBreaks(NSString *currentText) {
     
     return currentText;
 }
+#endif
 
 NS_INLINE BOOL scanLinebreak(NSScanner *scanner, NSString *linebreakString, int linenr) {
     BOOL success = ([scanner scanString:linebreakString intoString:NULL] && (++linenr >= 0));
