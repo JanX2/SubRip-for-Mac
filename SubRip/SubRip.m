@@ -262,8 +262,8 @@ NS_INLINE NSString * convertSubViewerLineBreaks(NSString *currentText) {
 }
 #endif
 
-NS_INLINE BOOL scanLinebreak(NSScanner *scanner, NSString *linebreakString, int linenr) {
-    BOOL success = ([scanner scanString:linebreakString intoString:NULL] && (++linenr >= 0));
+NS_INLINE BOOL scanLinebreak(NSScanner *scanner, NSString *linebreakString, int *linenr) {
+    BOOL success = ([scanner scanString:linebreakString intoString:NULL] && (++(*linenr) >= 0));
     return success;
 }
 
@@ -278,7 +278,7 @@ NS_INLINE BOOL scanString(NSScanner *scanner, NSString *str) {
 #if 1
     // Should handle mal-formed SRT files. May fill error even if parsing was successful!
     // Basis for implementation donated by Peter Ljunglöf (SubTTS)
-#   define SCAN_LINEBREAK() scanLinebreak(scanner, linebreakString, lineNr)
+#   define SCAN_LINEBREAK() scanLinebreak(scanner, linebreakString, &lineNr)
 #   define SCAN_STRING(str) scanString(scanner, (str))
 
     NSScanner *scanner = [NSScanner scannerWithString:str];
