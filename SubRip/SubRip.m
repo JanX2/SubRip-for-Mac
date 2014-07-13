@@ -301,7 +301,7 @@ NS_INLINE BOOL scanString(NSScanner *scanner, NSString *str) {
     int subtitleNr = 0;
     int lineNr = 1;
     
-    NSRegularExpression *tagRe;
+    NSRegularExpression *tagRe = nil;
    
     while (SCAN_LINEBREAK()); // Skip leading empty lines.
    
