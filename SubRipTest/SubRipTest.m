@@ -53,7 +53,7 @@ static NSString *testTaggedSRTString1;
 	// Test string from http://www.visualsubsync.org/help/srt
 	testStringsDict = [NSMutableDictionary dictionary];
 	
-	NSArray *testStringNames = [NSArray arrayWithObjects:@"test", @"test-newline", @"test-missing-trailing-newline", @"test-missing-milliseconds", @"test-empty-text", nil];
+	NSArray *testStringNames = [NSArray arrayWithObjects:@"test", @"test-newline", @"test-missing-trailing-newline", @"test-missing-milliseconds", @"test-empty-text", @"test-curly-braces", nil];
 	for (NSString *testFileName in testStringNames) {
 		[testStringsDict setObject:[self loadTestFileWithName:testFileName fromBundle:testBundle error:&error] forKey:testFileName];
 	}
@@ -109,6 +109,16 @@ static NSString *testTaggedSRTString1;
 		if (subRip == nil) {
 			NSLog(@"%@", error);
 			XCTFail(@"Couldn’t parse %@.", testStringName);
+		}
+		
+		if ([testStringName isEqualToString:@"test-curly-braces"]) {
+			NSString * const textWithoutTags = @""
+			"Hide these tags: \n"
+			"also hide these tags: \n"
+			"but show this: {normal text}";
+			SubRipItem *item0 = [subRip.subtitleItems objectAtIndex:0];
+			NSString *srtText = item0.text;
+			XCTAssertEqualObjects(srtText, textWithoutTags, @"Curly braces enclosed tags are not removed correctly.");
 		}
 	}];
 	

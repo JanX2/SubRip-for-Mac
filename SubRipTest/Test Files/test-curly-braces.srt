@@ -1,0 +1,5 @@
+1
+00:00:52,501 --> 00:00:54,500
+Hide these tags: {\some_letters_or_numbers_or_chars}
+also hide these tags: {Y:some_letters_or_numbers_or_chars}
+but show this: {normal text}

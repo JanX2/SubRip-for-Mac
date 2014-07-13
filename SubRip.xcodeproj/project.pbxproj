@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D175F0B19729D4B00A5EFE8 /* test-curly-braces.srt in Resources */ = {isa = PBXBuildFile; fileRef = 3D175F0A19729D4B00A5EFE8 /* test-curly-braces.srt */; };
 		3D2635D7169EF3E1004184E3 /* test-missing-trailing-newline.srt in Resources */ = {isa = PBXBuildFile; fileRef = 3D2635D5169EF3E1004184E3 /* test-missing-trailing-newline.srt */; };
 		3D2635D8169EF3E1004184E3 /* test-newline.srt in Resources */ = {isa = PBXBuildFile; fileRef = 3D2635D6169EF3E1004184E3 /* test-newline.srt */; };
 		3D263606169F21BA004184E3 /* test-malformed.srt in Resources */ = {isa = PBXBuildFile; fileRef = 3D263605169F21BA004184E3 /* test-malformed.srt */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D175F0A19729D4B00A5EFE8 /* test-curly-braces.srt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test-curly-braces.srt"; sourceTree = "<group>"; };
 		3D2635D5169EF3E1004184E3 /* test-missing-trailing-newline.srt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test-missing-trailing-newline.srt"; sourceTree = "<group>"; };
 		3D2635D6169EF3E1004184E3 /* test-newline.srt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test-newline.srt"; sourceTree = "<group>"; };
 		3D263605169F21BA004184E3 /* test-malformed.srt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test-malformed.srt"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		3D4181AC166506D3006DC6F4 /* Test Files */ = {
 			isa = PBXGroup;
 			children = (
+				3D175F0A19729D4B00A5EFE8 /* test-curly-braces.srt */,
 				3DCDF76E1786FF6D00AE6A23 /* test-empty-text.srt */,
 				3D263605169F21BA004184E3 /* test-malformed.srt */,
 				3DCDF76F1786FF6D00AE6A23 /* test-missing-milliseconds.srt */,
@@ -424,6 +427,7 @@
 				3D2635D7169EF3E1004184E3 /* test-missing-trailing-newline.srt in Resources */,
 				3D2635D8169EF3E1004184E3 /* test-newline.srt in Resources */,
 				3D263606169F21BA004184E3 /* test-malformed.srt in Resources */,
+				3D175F0B19729D4B00A5EFE8 /* test-curly-braces.srt in Resources */,
 				3DCDF7701786FF6D00AE6A23 /* test-empty-text.srt in Resources */,
 				3DCDF7711786FF6D00AE6A23 /* test-missing-milliseconds.srt in Resources */,
 			);
