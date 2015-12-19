@@ -195,9 +195,9 @@ NS_INLINE CMTime convertSecondsMillisecondsToCMTime(int seconds, int millisecond
     int milliseconds;
     int totalNumSeconds;
     
-    [SubRip parseTimecodeString:timecodeString
-                    intoSeconds:&totalNumSeconds
-                   milliseconds:&milliseconds];
+    [self parseTimecodeString:timecodeString
+                  intoSeconds:&totalNumSeconds
+                 milliseconds:&milliseconds];
     
     CMTime time = convertSecondsMillisecondsToCMTime(totalNumSeconds, milliseconds);
     
@@ -917,8 +917,8 @@ NS_INLINE NSString * subRipItem2SRTBlock(SubRipItem *item, BOOL lineBreaksAllowe
     
     id otherText = other.text;
     
-    return ((CMTimeCompare(other.startTime, _startTime) == 0) &&
-            (CMTimeCompare(other.endTime, _endTime) == 0) &&
+    return (CMTIME_COMPARE_INLINE(other.startTime, ==, _startTime) &&
+            (CMTIME_COMPARE_INLINE(other.endTime, ==, _endTime) == 0) &&
             ((otherText == _text) || [otherText isEqualTo:_text]));
 }
 
@@ -931,8 +931,8 @@ NS_INLINE NSString * subRipItem2SRTBlock(SubRipItem *item, BOOL lineBreaksAllowe
     
     id otherText = other.text;
     
-    return ((CMTimeCompare(other.startTime, _startTime) == 0) &&
-            (CMTimeCompare(other.endTime, _endTime) == 0) &&
+    return (CMTIME_COMPARE_INLINE(other.startTime, ==, _startTime) &&
+            CMTIME_COMPARE_INLINE(other.endTime, ==, _endTime) &&
             ((otherText == _text) || [otherText isEqualTo:_text]));
 }
 
