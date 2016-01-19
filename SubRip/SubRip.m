@@ -1027,16 +1027,20 @@ NS_INLINE NSString * subRipItem2SRTBlock(SubRipItem *item, BOOL lineBreaksAllowe
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
     self = [self init];
-    _startTime = [decoder decodeCMTimeForKey:@"startTime"];
-    _endTime = [decoder decodeCMTimeForKey:@"endTime"];
-    self.text = [decoder decodeObjectForKey:@"text"];
+    
+    if (self) {
+        _startTime = [decoder decodeCMTimeForKey:@"startTime"];
+        _endTime = [decoder decodeCMTimeForKey:@"endTime"];
+        self.text = [decoder decodeObjectForKey:@"text"];
 #if SUBRIP_TAG_SUPPORT
-    NSDictionary *options = [decoder decodeObjectForKey:@"attributeOptions"];
-    BOOL didParseTags = [decoder decodeBoolForKey:@"didParseTags"];
-    if (didParseTags) {
-        [self parseTagsWithOptions:options];
-    }
+        NSDictionary *options = [decoder decodeObjectForKey:@"attributeOptions"];
+        BOOL didParseTags = [decoder decodeBoolForKey:@"didParseTags"];
+        if (didParseTags) {
+            [self parseTagsWithOptions:options];
+        }
 #endif
+    }
+    
     return self;
 }
             
